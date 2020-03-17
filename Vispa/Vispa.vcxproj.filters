@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{b7948bf4-3490-41b1-bfd2-ac172590f063}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{0d7d2919-6f04-42a5-9b8c-45852e9e19c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\vispa">
+      <UniqueIdentifier>{6ef1a81b-1773-4109-a3c1-b11109af732c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\vispa">
+      <UniqueIdentifier>{1bb9baa6-4b10-41c6-85e9-c86f017c0f75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utils">
+      <UniqueIdentifier>{29d5b1a2-0ddc-4322-a383-56aaa7ce497c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\vispa\vispa.h">
+      <Filter>include\vispa</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vispa\Vispa.h">
+      <Filter>src\vispa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Emulator.core\src\utils\boolean.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\boolean.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\vispa\Vispa.c">
+      <Filter>src\vispa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Emulator.core\src\utils\boolean.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\boolean.c">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\utils\boolean.c">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\emulator\car\core\Cartridge.c">
+      <Filter>src\emulator\car\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\emulator\cpu\bus\Bus.c">
+      <Filter>src\emulator\cpu\bus</Filter>
+    </ClCompile>
+    <ClCompile Include="src\emulator\cpu\core\CPU.c">
+      <Filter>src\emulator\cpu\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\emulator\cpu\core\Flags.c">
+      <Filter>src\emulator\cpu\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\emulator\cpu\core\Registery.c">
+      <Filter>src\emulator\cpu\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\emulator\cpu\core\instructions\operations.c">
+      <Filter>src\emulator\cpu\core\instructions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\emulator\cpu\core\instructions\addressing.c">
+      <Filter>src\emulator\cpu\core\instructions</Filter>
+    </ClCompile>
+    <ClCompile Include="src\emulator\Emulator.c">
+      <Filter>src\emulator</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\utils\boolean.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\emulator\car\core\CartridgeHeader.h">
+      <Filter>src\emulator\car\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\emulator\car\core\Cartridge.h">
+      <Filter>src\emulator\car\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\emulator\car\mappers\Mapper.h">
+      <Filter>src\emulator\car\mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\emulator\cpu\bus\Bus.h">
+      <Filter>src\emulator\cpu\bus</Filter>
+    </ClInclude>
+    <ClInclude Include="src\emulator\cpu\core\CPU.h">
+      <Filter>src\emulator\cpu\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\emulator\cpu\core\Flags.h">
+      <Filter>src\emulator\cpu\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\emulator\cpu\core\Registery.h">
+      <Filter>src\emulator\cpu\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\emulator\cpu\core\settings.h">
+      <Filter>src\emulator\cpu\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\emulator\cpu\core\instructions\operations.h">
+      <Filter>src\emulator\cpu\core\instructions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\emulator\cpu\core\instructions\addressing.h">
+      <Filter>src\emulator\cpu\core\instructions</Filter>
+    </ClInclude>
+    <ClInclude Include="src\emulator\cpu\core\instructions\cpu_instructions.h">
+      <Filter>src\emulator\cpu\core\instructions</Filter>
+    </ClInclude>
+    <ClInclude Include="include\emulator\emulator.h">
+      <Filter>include\emulator</Filter>
+    </ClInclude>
+    <ClInclude Include="src\emulator\Emulator.h">
+      <Filter>src\emulator</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{d3bf3282-db5e-4530-9775-7a5a2b7ae68c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\emulator">
+      <UniqueIdentifier>{aca40a34-9c0d-42b8-93f8-f86ec2861832}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utils">
+      <UniqueIdentifier>{4bf0d095-427f-49b8-a1b4-305564ce0e95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\emulator\car">
+      <UniqueIdentifier>{c0f77e33-e0f1-4e37-950f-45cfece78176}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\emulator\cpu">
+      <UniqueIdentifier>{1454e474-f344-4341-9f99-4ffde26a91ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\emulator\ppu">
+      <UniqueIdentifier>{60c77417-9238-42fd-a6d5-59f63d4c80d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\emulator\car\core">
+      <UniqueIdentifier>{a15b7a0b-0c1d-49de-8cc5-9464206d3915}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\emulator\car\mappers">
+      <UniqueIdentifier>{f33bd25c-2962-4610-91de-daa0e935154d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\emulator\cpu\bus">
+      <UniqueIdentifier>{1f194edb-3d72-464b-8192-0e0a6d2d3788}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\emulator\cpu\core">
+      <UniqueIdentifier>{5a2c06b6-fa97-41d8-a16a-fc5c4aee9992}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\emulator\cpu\core\instructions">
+      <UniqueIdentifier>{60de17b9-bab8-4d49-b84a-1c8d87ba6837}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\emulator\ppu\bus">
+      <UniqueIdentifier>{a84b8ebf-d816-40e6-a178-08d5f08a47bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\emulator\ppu\core">
+      <UniqueIdentifier>{5137bd6f-7a2b-4580-aeb0-65d6458ddaff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{e3c4a20b-f3ef-4374-a336-1b15bae64d2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\emulator">
+      <UniqueIdentifier>{7473bb01-862d-4e4a-baab-bf6ba91cfd4a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
+</Project>
