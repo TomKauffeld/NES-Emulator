@@ -10,6 +10,9 @@ struct vispa {
 	bool closed;
 	GLFWwindow* window;
 	on_frame_fun* on_frame;
+	int height;
+	int width;
+	uint32_t* buffer;
 };
 
 

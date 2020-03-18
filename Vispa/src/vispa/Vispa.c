@@ -1,6 +1,7 @@
 #include "Vispa.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 uint8_t nbScreens = 0;
 Vispa* active = NULL;
@@ -33,10 +34,20 @@ Vispa* vispa_init(int width, int height, const char* title, on_frame_fun* on_fra
 	Vispa* vispa = (Vispa*)malloc(sizeof(Vispa));
 	if (vispa == NULL)
 		return NULL;
+	vispa->buffer = (uint32_t*)malloc(sizeof(uint32_t) * width * height);
+	if (vispa->buffer == NULL)
+	{
+		free(vispa);
+		if (nbScreens == 0)
+			glfwTerminate();
+		return NULL;
+	}
+	memset(vispa->buffer, 0x00, sizeof(uint32_t) * width * height);
 	vispa->closed = FALSE;
 	vispa->window = glfwCreateWindow(width, height, title, NULL, NULL);
 	if (vispa->window == NULL)
 	{
+		free(vispa->buffer);
 		free(vispa);
 		if (nbScreens == 0)
 			glfwTerminate();
@@ -49,6 +60,7 @@ Vispa* vispa_init(int width, int height, const char* title, on_frame_fun* on_fra
 	{
 		printf("error : %s\n", glewGetErrorString(err));
 		glfwDestroyWindow(vispa->window);
+		free(vispa->buffer);
 		free(vispa);
 		if (nbScreens == 0)
 			glfwTerminate();
@@ -57,15 +69,33 @@ Vispa* vispa_init(int width, int height, const char* title, on_frame_fun* on_fra
 
 	vispa_viewport(vispa);
 	vispa->on_frame = on_frame;
+	vispa->width = width;
+	vispa->height = height;
 	nbScreens++;
 	return vispa;
 }
 
-void vispa_set_resolution(Vispa* vispa, int width, int height)
+bool vispa_set_resolution(Vispa* vispa, int width, int height)
 {
-	
+	if (vispa == NULL)
+		return;
+	uint32_t* tmp = (uint32_t*)realloc(vispa->buffer, sizeof(uint32_t) * width * height);
+	if (tmp == NULL)
+		return FALSE;
+	vispa->height = height;
+	vispa->width = width;
+	free(vispa->buffer);
+	vispa->buffer = tmp;
+	memset(vispa->buffer, 0x00, sizeof(uint32_t) * width * height);
 }
 
+void vispa_show_buffer(Vispa* vispa)
+{
+	if (vispa == NULL)
+		return;
+	vispa_set_active(vispa);
+	
+}
 
 void vispa_destroy(Vispa* vispa)
 {
@@ -76,6 +106,7 @@ void vispa_destroy(Vispa* vispa)
 
 	glfwDestroyWindow(vispa->window);
 	vispa->closed = TRUE;
+	free(vispa->buffer);
 	free(vispa);
 	nbScreens--;
 	if (nbScreens == 0)

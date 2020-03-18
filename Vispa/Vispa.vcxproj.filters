@@ -21,9 +21,30 @@
     <ClInclude Include="src\vispa\Vispa.h">
       <Filter>src\vispa</Filter>
     </ClInclude>
+    <ClInclude Include="src\vispa\Color.h">
+      <Filter>src\vispa</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vispa\color.h">
+      <Filter>include\vispa</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vispa\keys.h">
+      <Filter>include\vispa</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vispa\Keys.h">
+      <Filter>src\vispa</Filter>
+    </ClInclude>
+    <ClInclude Include="include\vispa\api.h">
+      <Filter>include\vispa</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\vispa\Vispa.c">
+      <Filter>src\vispa</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vispa\Color.c">
+      <Filter>src\vispa</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vispa\Keys.c">
       <Filter>src\vispa</Filter>
     </ClCompile>
   </ItemGroup>

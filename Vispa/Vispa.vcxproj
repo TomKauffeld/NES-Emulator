@@ -193,10 +193,17 @@ xcopy /y /d "$(SolutionDir)Utils\bin$(PlatformArchitecture)\*.dll" "$(OutDir)"</
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="include\vispa\api.h" />
+    <ClInclude Include="include\vispa\color.h" />
+    <ClInclude Include="include\vispa\keys.h" />
     <ClInclude Include="include\vispa\vispa.h" />
+    <ClInclude Include="src\vispa\Color.h" />
+    <ClInclude Include="src\vispa\Keys.h" />
     <ClInclude Include="src\vispa\Vispa.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\vispa\Color.c" />
+    <ClCompile Include="src\vispa\Keys.c" />
     <ClCompile Include="src\vispa\Vispa.c" />
   </ItemGroup>
   <ItemGroup>

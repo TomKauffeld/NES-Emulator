@@ -1,11 +1,6 @@
 #ifndef __VISPA_H__
 #define __VISPA_H__
-
-#ifdef VISPA_EXPORTS
-#define VISPA_API __declspec(dllexport)
-#else
-#define VISPA_API __declspec(dllimport)
-#endif
+#include "api.h"
 
 #include <utils/boolean.h>
 
@@ -23,6 +18,8 @@ VISPA_API void vispa_tick_once(Vispa* vispa);
 VISPA_API void vispa_tick_automatic(Vispa* vispa);
 
 VISPA_API void vispa_destroy(Vispa* vispa);
+
+VISPA_API bool vispa_set_resolution(Vispa* vispa, int width, int height);
 
 
 #endif
