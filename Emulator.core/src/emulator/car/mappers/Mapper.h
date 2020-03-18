@@ -1,7 +1,6 @@
 #ifndef __EMULATOR_CAR_MAPPERS_MAPPER_H__
 #define __EMULATOR_CAR_MAPPERS_MAPPER_H__
-
-#include "../../../utils/boolean.h"
+#include <utils/boolean.h>
 #include <inttypes.h>
 
 

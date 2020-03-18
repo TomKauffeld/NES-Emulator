@@ -2,7 +2,7 @@
 #define __EMULATOR_CPU_CORE_FLAGS__
 
 #include <inttypes.h>
-#include "../../../utils/boolean.h"
+#include <utils/boolean.h>
 
 
 typedef uint8_t flag;

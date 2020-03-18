@@ -18,41 +18,12 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\emulator\car\core\Cartridge.c" />
-    <ClCompile Include="src\emulator\cpu\bus\Bus.c" />
-    <ClCompile Include="src\emulator\cpu\core\CPU.c" />
-    <ClCompile Include="src\emulator\cpu\core\Flags.c" />
-    <ClCompile Include="src\emulator\cpu\core\instructions\addressing.c" />
-    <ClCompile Include="src\emulator\cpu\core\instructions\operations.c" />
-    <ClCompile Include="src\emulator\cpu\core\Registery.c" />
-    <ClCompile Include="src\emulator\Emulator.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\emulator\emulator.h" />
-    <ClInclude Include="src\emulator\car\core\Cartridge.h" />
-    <ClInclude Include="src\emulator\car\core\CartridgeHeader.h" />
-    <ClInclude Include="src\emulator\car\mappers\Mapper.h" />
-    <ClInclude Include="src\emulator\cpu\bus\Bus.h" />
-    <ClInclude Include="src\emulator\cpu\core\CPU.h" />
-    <ClInclude Include="src\emulator\cpu\core\Flags.h" />
-    <ClInclude Include="src\emulator\cpu\core\instructions\cpu_instructions.h" />
-    <ClInclude Include="src\emulator\cpu\core\instructions\addressing.h" />
-    <ClInclude Include="src\emulator\cpu\core\instructions\operations.h" />
-    <ClInclude Include="src\emulator\cpu\core\Registery.h" />
-    <ClInclude Include="src\emulator\cpu\core\settings.h" />
-    <ClInclude Include="src\emulator\Emulator.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="cpp.hint" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{2C2408BB-DD91-4D18-8D64-C1B5C398DD1E}</ProjectGuid>
+    <ProjectGuid>{42D9873C-4516-4457-B8FF-916204FD28D9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Emulator</RootNamespace>
+    <RootNamespace>Utils</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Emulator.core</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -101,124 +72,111 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IntDir>$(ProjectDir)int\$(Configuration)$(PlatformArchitecture)\</IntDir>
     <OutDir>$(ProjectDir)dev$(PlatformArchitecture)\</OutDir>
-    <IncludePath>$(SolutionDir)Utils\include\;$(ProjectDir)include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Utils\dev$(PlatformArchitecture)\;$(LibraryPath)</LibraryPath>
+    <IntDir>$(ProjectDir)int\$(Configuration)$(PlatformArchitecture)\</IntDir>
+    <IncludePath>$(ProjectDir)include\;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IntDir>$(ProjectDir)int\$(Configuration)$(PlatformArchitecture)\</IntDir>
     <OutDir>$(ProjectDir)dev$(PlatformArchitecture)\</OutDir>
-    <IncludePath>$(SolutionDir)Utils\include\;$(ProjectDir)include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Utils\dev$(PlatformArchitecture)\;$(LibraryPath)</LibraryPath>
+    <IntDir>$(ProjectDir)int\$(Configuration)$(PlatformArchitecture)\</IntDir>
+    <IncludePath>$(ProjectDir)include\;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IntDir>$(ProjectDir)int\$(Configuration)$(PlatformArchitecture)\</IntDir>
     <OutDir>$(ProjectDir)bin$(PlatformArchitecture)\</OutDir>
-    <IncludePath>$(SolutionDir)Utils\include\;$(ProjectDir)include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Utils\bin$(PlatformArchitecture)\;$(LibraryPath)</LibraryPath>
+    <IntDir>$(ProjectDir)int\$(Configuration)$(PlatformArchitecture)\</IntDir>
+    <IncludePath>$(ProjectDir)include\;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IntDir>$(ProjectDir)int\$(Configuration)$(PlatformArchitecture)\</IntDir>
     <OutDir>$(ProjectDir)bin$(PlatformArchitecture)\</OutDir>
-    <IncludePath>$(SolutionDir)Utils\include\;$(ProjectDir)include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Utils\bin$(PlatformArchitecture)\;$(LibraryPath)</LibraryPath>
+    <IntDir>$(ProjectDir)int\$(Configuration)$(PlatformArchitecture)\</IntDir>
+    <IncludePath>$(ProjectDir)include\;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>EMULATOR_CORE_DLL;_CONSOLE;_DEBUG;COUNT_CYCLES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;UTILS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>user32.lib;kernel32.lib;Utils.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>
-      </AdditionalLibraryDirectories>
+      <EnableUAC>false</EnableUAC>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)Utils\dev$(PlatformArchitecture)\*.dll" "$(OutDir)"</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>EMULATOR_CORE_DLL;_DEBUG;COUNT_CYCLES;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;UTILS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>user32.lib;kernel32.lib;Utils.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>
-      </AdditionalLibraryDirectories>
+      <EnableUAC>false</EnableUAC>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)Utils\dev$(PlatformArchitecture)\*.dll" "$(OutDir)"</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>EMULATOR_CORE_DLL;NDEBUG;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;UTILS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>user32.lib;kernel32.lib;Utils.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>
-      </AdditionalLibraryDirectories>
+      <EnableUAC>false</EnableUAC>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)Utils\bin$(PlatformArchitecture)\*.dll" "$(OutDir)"</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>EMULATOR_CORE_DLL;_CONSOLE;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;UTILS_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>user32.lib;kernel32.lib;Utils.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>
-      </AdditionalLibraryDirectories>
+      <EnableUAC>false</EnableUAC>
     </Link>
-    <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)Utils\bin$(PlatformArchitecture)\*.dll" "$(OutDir)"</Command>
-    </PostBuildEvent>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\utils\Boolean.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\utils\boolean.h" />
+    <ClInclude Include="include\utils\utils.h" />
+    <ClInclude Include="src\utils\Boolean.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

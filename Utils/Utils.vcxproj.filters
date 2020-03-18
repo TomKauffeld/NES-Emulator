@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{1a066555-15e3-46ba-884f-2b5bf88a6067}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{5b9c87e3-a2c8-4263-b874-7b23dbfac122}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utils">
+      <UniqueIdentifier>{799a7ee7-bdf5-4823-af1c-35ce3ea2187b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\utils">
+      <UniqueIdentifier>{c464ccce-8587-41bb-8554-8ad8bb893967}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\utils\Boolean.c">
+      <Filter>src\utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\utils\boolean.h">
+      <Filter>include\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\Boolean.h">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="include\utils\utils.h">
+      <Filter>include\utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
+</Project>

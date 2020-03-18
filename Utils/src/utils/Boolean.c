@@ -1,4 +1,4 @@
-#include "boolean.h"
+#include "Boolean.h"
 
 bool is_true(bool b) {
 	return b != FALSE;

@@ -5,12 +5,22 @@ VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Emulator", "Emulator\Emulator.vcxproj", "{296A7BE5-4BFC-4F73-AB02-22B46EDCBCDE}"
 	ProjectSection(ProjectDependencies) = postProject
+		{C5DBB811-DD82-44F0-BA4F-E0FAFF724095} = {C5DBB811-DD82-44F0-BA4F-E0FAFF724095}
+		{42D9873C-4516-4457-B8FF-916204FD28D9} = {42D9873C-4516-4457-B8FF-916204FD28D9}
 		{2C2408BB-DD91-4D18-8D64-C1B5C398DD1E} = {2C2408BB-DD91-4D18-8D64-C1B5C398DD1E}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Emulator.core", "Emulator.core\Emulator.core.vcxproj", "{2C2408BB-DD91-4D18-8D64-C1B5C398DD1E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{42D9873C-4516-4457-B8FF-916204FD28D9} = {42D9873C-4516-4457-B8FF-916204FD28D9}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Vispa", "Vispa\Vispa.vcxproj", "{C5DBB811-DD82-44F0-BA4F-E0FAFF724095}"
+	ProjectSection(ProjectDependencies) = postProject
+		{42D9873C-4516-4457-B8FF-916204FD28D9} = {42D9873C-4516-4457-B8FF-916204FD28D9}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Utils", "Utils\Utils.vcxproj", "{42D9873C-4516-4457-B8FF-916204FD28D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +54,14 @@ Global
 		{C5DBB811-DD82-44F0-BA4F-E0FAFF724095}.Release|x64.Build.0 = Release|x64
 		{C5DBB811-DD82-44F0-BA4F-E0FAFF724095}.Release|x86.ActiveCfg = Release|Win32
 		{C5DBB811-DD82-44F0-BA4F-E0FAFF724095}.Release|x86.Build.0 = Release|Win32
+		{42D9873C-4516-4457-B8FF-916204FD28D9}.Debug|x64.ActiveCfg = Debug|x64
+		{42D9873C-4516-4457-B8FF-916204FD28D9}.Debug|x64.Build.0 = Debug|x64
+		{42D9873C-4516-4457-B8FF-916204FD28D9}.Debug|x86.ActiveCfg = Debug|Win32
+		{42D9873C-4516-4457-B8FF-916204FD28D9}.Debug|x86.Build.0 = Debug|Win32
+		{42D9873C-4516-4457-B8FF-916204FD28D9}.Release|x64.ActiveCfg = Release|x64
+		{42D9873C-4516-4457-B8FF-916204FD28D9}.Release|x64.Build.0 = Release|x64
+		{42D9873C-4516-4457-B8FF-916204FD28D9}.Release|x86.ActiveCfg = Release|Win32
+		{42D9873C-4516-4457-B8FF-916204FD28D9}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

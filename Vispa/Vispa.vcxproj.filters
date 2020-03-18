@@ -13,9 +13,6 @@
     <Filter Include="src\vispa">
       <UniqueIdentifier>{1bb9baa6-4b10-41c6-85e9-c86f017c0f75}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\utils">
-      <UniqueIdentifier>{29d5b1a2-0ddc-4322-a383-56aaa7ce497c}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\vispa\vispa.h">
@@ -24,22 +21,10 @@
     <ClInclude Include="src\vispa\Vispa.h">
       <Filter>src\vispa</Filter>
     </ClInclude>
-    <ClInclude Include="..\Emulator.core\src\utils\boolean.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\boolean.h">
-      <Filter>src\utils</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\vispa\Vispa.c">
       <Filter>src\vispa</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Emulator.core\src\utils\boolean.c">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\utils\boolean.c">
-      <Filter>src\utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

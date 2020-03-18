@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="src\utils\boolean.c">
-      <Filter>src\utils</Filter>
-    </ClCompile>
     <ClCompile Include="src\emulator\car\core\Cartridge.c">
       <Filter>src\emulator\car\core</Filter>
     </ClCompile>
@@ -30,9 +27,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\utils\boolean.h">
-      <Filter>src\utils</Filter>
-    </ClInclude>
     <ClInclude Include="src\emulator\car\core\CartridgeHeader.h">
       <Filter>src\emulator\car\core</Filter>
     </ClInclude>
@@ -79,9 +73,6 @@
     </Filter>
     <Filter Include="src\emulator">
       <UniqueIdentifier>{aca40a34-9c0d-42b8-93f8-f86ec2861832}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\utils">
-      <UniqueIdentifier>{4bf0d095-427f-49b8-a1b4-305564ce0e95}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\emulator\car">
       <UniqueIdentifier>{c0f77e33-e0f1-4e37-950f-45cfece78176}</UniqueIdentifier>
