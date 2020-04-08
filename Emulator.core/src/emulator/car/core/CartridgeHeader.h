@@ -2,26 +2,23 @@
 #define __EMULATOR_CAR_CORE_CARTRIDGE_HEADER_H__
 #include <inttypes.h>
 
-typedef uint8_t cartridge_format;
-
-#define FORMAT_NES_2_0      3
-#define FORMAT_INES         2
-#define FORMAT_ARCHAIC_INES 1
-#define FORMAT_UNKNOWN      0
 
 typedef struct cartridge_header {
-	cartridge_format format;
-	uint8_t size_prg;
-	uint8_t size_chr;
-	uint16_t mapper;
+	char name[4];
+	uint8_t size_prg_rom;
+	uint8_t size_chr_rom;
+	uint8_t mapper_1;
+	uint8_t mapper_2;
+	uint8_t size_prg_ram;
+	uint8_t tv_system_1;
+	uint8_t tv_system_2;
+	uint8_t unused_1;
+	uint8_t unused_2;
+	uint8_t unused_3;
+	uint8_t unused_4;
+	uint8_t unused_5;
 } CartridgeHeader;
 
-
-/*
-CartridgeHeader* cartridge_header_init();
-void cartridge_header_destroy(CartridgeHeader* cartridgeHeader);
-
-*/
 
 
 

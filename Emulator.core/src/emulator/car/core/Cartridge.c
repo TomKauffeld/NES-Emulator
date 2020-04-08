@@ -1,50 +1,105 @@
 #include "Cartridge.h"
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
-uint8_t nes[4] = { 0x4e, 0x45, 0x53, 0x1a };
 
-Cartridge* cartridge_init(uint8_t prg_size, uint8_t chr_size)
+Cartridge* cartridge_load_from_file(const char* file, car_mapper_provider provider)
 {
-	size_t prg = ((size_t)prg_size) * 16 * 1024;
-	size_t chr = ((size_t)chr_size) *  8 * 1024;
+	FILE* f;
+	errno_t err = fopen_s(&f, file, "rb");
+	if (f == NULL || err != 0)
+	{
+#ifdef _DEBUG
+		printf("Error, couldn't open the file : %s\n", file);
+#endif
+		return NULL;
+	}
 	Cartridge* cartridge = (Cartridge*)malloc(sizeof(Cartridge));
 	if (cartridge == NULL)
+	{
+#ifdef _DEBUG
+		printf("Error, couldn't allocate memory for the cartridge\n");
+#endif
+		fclose(f);
 		return NULL;
+	}
+	cartridge->mirror = CARTRIDGE_MIRROR_HORIZONTAL;
+	fread_s(&(cartridge->header), sizeof(CartridgeHeader), sizeof(uint8_t), 16, f);
 
-	memset(cartridge, 0x00, sizeof(Cartridge));
-	
-	//cartridge->header = cartridge_header_init();
-	if (cartridge->header == NULL)
+	if (cartridge->header.mapper_1 & 0x04)
+		fread_s(cartridge->trainer, sizeof(uint8_t) * 512, sizeof(uint8_t), 512, f);
+	else
+		memset(cartridge->trainer, 0x00, sizeof(uint8_t) * 512);
+	cartridge->mapper_id = ((cartridge->header.mapper_2 >> 4) << 4) | (cartridge->header.mapper_1 >> 4);
+
+#ifdef _DEBUG
+	printf("PRG : %u  CHR : %u\n", cartridge->header.size_prg_rom, cartridge->header.size_chr_rom);
+#endif
+	uint8_t nFileType = 1;
+	uint16_t size_prg, size_chr;
+	switch (nFileType)
 	{
-		free(cartridge);
-		return NULL;
-	}
-	cartridge->prg = (uint8_t*)malloc(prg * sizeof(uint8_t));
-	if (cartridge->prg == NULL)
-	{
-		//cartridge_header_destroy(cartridge->header);
-		free(cartridge);
-		return NULL;
-	}
-	if (chr > 0)
-	{
-		cartridge->chr = (uint8_t*)malloc(chr * sizeof(uint8_t));
-		if (cartridge->chr == NULL)
+	case 1:
+		size_prg = cartridge->header.size_prg_rom * PRG_BANK_SIZE;
+		size_chr = cartridge->header.size_chr_rom * CHR_BANK_SIZE;
+		cartridge->prg = (uint8_t*)malloc(sizeof(uint8_t) * size_prg);
+		if (cartridge->prg == NULL)
 		{
-			//cartridge_header_destroy(cartridge->header);
-			free(cartridge->prg);
 			free(cartridge);
+			fclose(f);
+#ifdef _DEBUG
+			printf("Error, couldn't allocate memory for the cartridge PGR\n");
+#endif
 			return NULL;
 		}
-		memset(cartridge->chr, 0x00, chr * sizeof(uint8_t));
+		cartridge->chr = (uint8_t*)malloc(sizeof(uint8_t) * size_chr);
+		if (cartridge->chr == NULL)
+		{
+			free(cartridge->prg);
+			free(cartridge);
+			fclose(f);
+#ifdef _DEBUG
+			printf("Error, couldn't allocate memory for the cartridge CHR\n");
+#endif
+			return NULL;
+		}
+		fread_s(cartridge->prg, sizeof(uint8_t) * size_prg, sizeof(uint8_t), size_prg, f);
+		fread_s(cartridge->chr, sizeof(uint8_t) * size_chr, sizeof(uint8_t), size_chr, f);
+		break;
+	default:
+		free(cartridge);
+		fclose(f);
+#ifdef _DEBUG
+		printf("Error, incorrect file type : %u\n", nFileType);
+#endif
+		return NULL;
 	}
-
-	memset(cartridge->prg, 0x00, prg * sizeof(uint8_t));
-
-	cartridge->header->size_chr = chr_size;
-	cartridge->header->size_prg = prg_size;
-
+	fclose(f);
+	cartridge->mapper = (*provider)(cartridge->mapper_id);
+	if (cartridge->mapper != NULL)
+	{
+		cartridge->mapper->chr_banks = cartridge->header.size_chr_rom;
+		cartridge->mapper->prg_banks = cartridge->header.size_prg_rom;
+		if (is_false((*cartridge->mapper->init)(cartridge->mapper)))
+		{
+#ifdef _DEBUG
+			printf("Error, couldn't initialize mapper %u\n", cartridge->mapper_id);
+#endif
+			free(cartridge->mapper);
+			cartridge->mapper = NULL;
+		}
+	}
+	if (cartridge->mapper == NULL)
+	{
+#ifdef _DEBUG
+		printf("Error, couldn't load mapper %u\n", cartridge->mapper_id);
+#endif
+		free(cartridge->chr);
+		free(cartridge->prg);
+		free(cartridge);
+		return NULL;
+	}
 	return cartridge;
 }
 
@@ -52,27 +107,45 @@ void cartridge_destroy(Cartridge* cartridge)
 {
 	if (cartridge == NULL)
 		return;
-	//cartridge_header_destroy(cartridge->header);
+	if (cartridge->mapper != NULL)
+	{
+		(*cartridge->mapper->destroy)(cartridge->mapper);
+		free(cartridge->mapper);
+	}
+	free(cartridge->chr);
 	free(cartridge->prg);
-	if (cartridge->chr != NULL)
-		free(cartridge->chr);
+	cartridge->mapper = NULL;
+	cartridge->chr = NULL;
+	cartridge->prg = NULL;
 	free(cartridge);
 }
 
-Cartridge* cartridge_load_from_memory(const uint8_t* rom, size_t rom_size)
+uint8_t cartridge_read_prg(Cartridge* cartridge, uint16_t addr)
 {
-	if (rom_size < 16)
-		return NULL;
-	if (memcmp(rom, nes, sizeof(uint8_t) * 4) != 0)
-		return NULL;
-	Cartridge* cartridge = cartridge_init(rom[4], rom[5]);
-	if (cartridge == NULL)
-		return NULL;
-	if ((rom[7] & 0x0c) == 0x08)
-		cartridge->header->format = FORMAT_NES_2_0;
-	else if ((rom[7] & 0x0c) == 0x00 && rom[12] == 0 && rom[13] == 0 && rom[14] == 0 && rom[15] == 0)
-		cartridge->header->format = FORMAT_INES;
-	else
-		cartridge->header->format = FORMAT_ARCHAIC_INES;
-	return NULL;
+	uint32_t realAddr = (*cartridge->mapper->prg_read)(cartridge->mapper, addr);
+	if (realAddr < UINT32_MAX)
+		return cartridge->prg[realAddr];
+	return 0x00;
+}
+
+void cartridge_write_prg(Cartridge* cartridge, uint16_t addr, uint8_t value)
+{
+	uint32_t realAddr = (*cartridge->mapper->prg_write)(cartridge->mapper, addr);
+	if (realAddr < UINT32_MAX)
+		cartridge->prg[realAddr] = value;
+}
+
+uint8_t cartridge_read_chr(Cartridge* cartridge, uint16_t addr)
+{
+	uint32_t realAddr = (*cartridge->mapper->chr_read)(cartridge->mapper, addr);
+	if (realAddr < UINT32_MAX)
+		return cartridge->chr[realAddr];
+	return 0x00;
+}
+
+void cartridge_write_chr(Cartridge* cartridge, uint16_t addr, uint8_t value)
+{
+	uint32_t realAddr = (*cartridge->mapper->chr_write)(cartridge->mapper, addr);
+	if (realAddr < UINT32_MAX)
+		cartridge->chr[realAddr] = value;
 }

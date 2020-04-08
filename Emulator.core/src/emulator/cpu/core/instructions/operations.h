@@ -250,6 +250,15 @@ uint8_t cpu_instruction_operation_txs(CPU* cpu);
 // Flags Out:   N, Z
 uint8_t cpu_instruction_operation_tya(CPU* cpu);
 
+uint8_t cpu_instruction_operation_lax(CPU* cpu);
+uint8_t cpu_instruction_operation_sax(CPU* cpu);
+uint8_t cpu_instruction_operation_dcp(CPU* cpu);
+uint8_t cpu_instruction_operation_isc(CPU* cpu);
+uint8_t cpu_instruction_operation_rla(CPU* cpu);
+uint8_t cpu_instruction_operation_rra(CPU* cpu);
+uint8_t cpu_instruction_operation_slo(CPU* cpu);
+uint8_t cpu_instruction_operation_sre(CPU* cpu);
+
 // This function captures illegal opcodes
 uint8_t cpu_instruction_operation_xxx(CPU* cpu);
 

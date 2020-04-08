@@ -27,12 +27,16 @@
     <ClCompile Include="src\emulator\cpu\core\instructions\operations.c" />
     <ClCompile Include="src\emulator\cpu\core\Registery.c" />
     <ClCompile Include="src\emulator\Emulator.c" />
+    <ClCompile Include="src\emulator\ppu\core\PPU.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\emulator\car\core\cartridge.h" />
+    <ClInclude Include="include\emulator\car\mappers\mapper.h" />
+    <ClInclude Include="include\emulator\car\mappers\mapperProvider.h" />
     <ClInclude Include="include\emulator\emulator.h" />
+    <ClInclude Include="include\emulator\emulator_core.h" />
     <ClInclude Include="src\emulator\car\core\Cartridge.h" />
     <ClInclude Include="src\emulator\car\core\CartridgeHeader.h" />
-    <ClInclude Include="src\emulator\car\mappers\Mapper.h" />
     <ClInclude Include="src\emulator\cpu\bus\Bus.h" />
     <ClInclude Include="src\emulator\cpu\core\CPU.h" />
     <ClInclude Include="src\emulator\cpu\core\Flags.h" />
@@ -42,6 +46,8 @@
     <ClInclude Include="src\emulator\cpu\core\Registery.h" />
     <ClInclude Include="src\emulator\cpu\core\settings.h" />
     <ClInclude Include="src\emulator\Emulator.h" />
+    <ClInclude Include="src\emulator\ppu\core\palScreen.h" />
+    <ClInclude Include="src\emulator\ppu\core\PPU.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

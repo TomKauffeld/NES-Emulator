@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{f5f4c668-5848-4216-91be-06c63ea4d61e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{0a070df3-f130-48e8-8c9a-8d72afa3e1b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\emulator">
+      <UniqueIdentifier>{d9ba7c28-fe8d-4f0d-b94e-241de64adcab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\emulator\car">
+      <UniqueIdentifier>{ca32c715-d3bd-43dd-97d0-f9e143bd6d5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\emulator\car\mappers">
+      <UniqueIdentifier>{2829103c-783c-486a-bc41-8cb133ac78d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\emulator">
+      <UniqueIdentifier>{c91ea398-9e08-4d05-959d-96da8c3fabfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\emulator\car">
+      <UniqueIdentifier>{8b04099c-04a9-4ac4-ac0a-8ec0a78dc0e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\emulator\car\mappers">
+      <UniqueIdentifier>{5b520d75-c650-45cb-9af8-3bd0a9dd09e4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\emulator\car\mappers\mapperDllProvider.h">
+      <Filter>include\emulator\car\mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\emulator\car\mappers\MapperDllProvider.h">
+      <Filter>src\emulator\car\mappers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\emulator\car\mappers\MapperDllprovider.c">
+      <Filter>src\emulator\car\mappers</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

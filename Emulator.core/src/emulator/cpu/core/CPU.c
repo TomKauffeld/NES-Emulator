@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 CPU* cpu_init()
 {
 	CPU* cpu = (CPU*)malloc(sizeof(CPU));
@@ -159,9 +160,12 @@ void cpu_clock(CPU* cpu)
 		cpu->cycles--;
 		return;
 	}
+	if (cpu->registery->pc == 0x0C6BD)
+	{
+		int i = 0;
+	}
 	cpu->opt_code = cpu_bus_read_pc(cpu);
 	cpu_status_set(cpu, FLAG_U, TRUE);
-	cpu->registery->pc++;
 
 	cpu->cycles = lookup[cpu->opt_code].cycles;
 

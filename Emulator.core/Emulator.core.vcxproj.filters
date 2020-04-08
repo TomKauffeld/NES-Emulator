@@ -25,6 +25,9 @@
     <ClCompile Include="src\emulator\Emulator.c">
       <Filter>src\emulator</Filter>
     </ClCompile>
+    <ClCompile Include="src\emulator\ppu\core\PPU.c">
+      <Filter>src\emulator\ppu\core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\emulator\car\core\CartridgeHeader.h">
@@ -32,9 +35,6 @@
     </ClInclude>
     <ClInclude Include="src\emulator\car\core\Cartridge.h">
       <Filter>src\emulator\car\core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\emulator\car\mappers\Mapper.h">
-      <Filter>src\emulator\car\mappers</Filter>
     </ClInclude>
     <ClInclude Include="src\emulator\cpu\bus\Bus.h">
       <Filter>src\emulator\cpu\bus</Filter>
@@ -66,6 +66,24 @@
     <ClInclude Include="src\emulator\Emulator.h">
       <Filter>src\emulator</Filter>
     </ClInclude>
+    <ClInclude Include="src\emulator\ppu\core\PPU.h">
+      <Filter>src\emulator\ppu\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\emulator\car\mappers\mapper.h">
+      <Filter>include\emulator\car\mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\emulator\car\mappers\mapperProvider.h">
+      <Filter>include\emulator\car\mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\emulator\emulator_core.h">
+      <Filter>include\emulator</Filter>
+    </ClInclude>
+    <ClInclude Include="include\emulator\car\core\cartridge.h">
+      <Filter>include\emulator\car\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\emulator\ppu\core\palScreen.h">
+      <Filter>src\emulator\ppu\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -85,9 +103,6 @@
     </Filter>
     <Filter Include="src\emulator\car\core">
       <UniqueIdentifier>{a15b7a0b-0c1d-49de-8cc5-9464206d3915}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\emulator\car\mappers">
-      <UniqueIdentifier>{f33bd25c-2962-4610-91de-daa0e935154d}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\emulator\cpu\bus">
       <UniqueIdentifier>{1f194edb-3d72-464b-8192-0e0a6d2d3788}</UniqueIdentifier>
@@ -109,6 +124,15 @@
     </Filter>
     <Filter Include="include\emulator">
       <UniqueIdentifier>{7473bb01-862d-4e4a-baab-bf6ba91cfd4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\emulator\car">
+      <UniqueIdentifier>{64a97700-2b64-4fc9-8109-0f1660f66ad9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\emulator\car\mappers">
+      <UniqueIdentifier>{4ed22e4a-1ec4-4665-8ea0-5e2c2de214a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\emulator\car\core">
+      <UniqueIdentifier>{80b683a0-778b-4c43-9d9f-7ed2c846b0be}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

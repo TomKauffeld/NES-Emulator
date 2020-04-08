@@ -13,6 +13,9 @@
 #define PPU_START       0x2000
 #define PPU_END         0x2007
 
+#define PPU_CLONE_START 0x2008
+#define PPU_CLONE_END   0x3fff
+
 #define APU_START       0x4000
 #define APU_END         0x4017
 
@@ -21,6 +24,10 @@
 
 #define ROM_START       0x4020
 #define ROM_END         0xffff
+
+
+#define CAR_PRG_START   0x8000
+#define CAR_PRG_END     0xffff
 
 #define RESET_ADDRESS 0xFFFC // the address where the pc will be fetched after a reset signal
 #define IRQ_ADDRESS 0xFFFE // the address where the pc will be fetched after a irq signal
