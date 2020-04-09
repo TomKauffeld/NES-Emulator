@@ -4,48 +4,122 @@
 #include <utils/boolean.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <SDL.h>
+
+#define WIDTH 256
+#define HEIGHT 240
 
 
 int main(int argc, char ** argv)
 {
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
+		return -4;
+	SDL_Window* window;
+	SDL_Renderer* renderer;
+	if (SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE, &window, &renderer) != 0)
+	{
+		SDL_LogError(SDL_LOG_CATEGORY_VIDEO, "Couldn't init screen/renderer");
+		SDL_LogError(SDL_LOG_CATEGORY_VIDEO, SDL_GetError());
+		SDL_Quit();
+		return -5;
+	}
 	Emulator* emulator = emulator_init();
 	if (emulator == NULL)
+	{
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't init the emulator");
+		SDL_DestroyRenderer(renderer);
+		SDL_DestroyWindow(window);
+		SDL_Quit();
 		return -1;
-	Cartridge* cartridge = cartridge_load_from_file("nestest.nes", &mapper_dll_provider);
+	}
+	Cartridge* cartridge = cartridge_load_from_file("nestest.nes ", &mapper_dll_provider);
 	if (cartridge == NULL)
 	{
+		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't load the cartridge");
 		emulator_destroy(emulator);
+		SDL_DestroyRenderer(renderer);
+		SDL_DestroyWindow(window);
+		SDL_Quit();
 		return -2;
 	}
 	emulator_insert_cartridge(emulator, cartridge);
 	emulator_signal_reset(emulator);
 	bool running = TRUE;
-	emulator_set_pc(emulator, 0xc000);
-	uint16_t old_pc = 0;
-	int instructions = 8991;
-	FILE* f;
-	fopen_s(&f, "log.txt", "w");
-	if (f == NULL)
-		return -3;
-	while (is_true(running) && instructions > 0)
+	SDL_Texture* buffer = SDL_CreateTexture(renderer,
+		SDL_PIXELFORMAT_RGBA32,
+		SDL_TEXTUREACCESS_STREAMING,
+		WIDTH,
+		HEIGHT);
+	if (buffer == NULL)
 	{
-		emulator_tick(emulator);
-		uint16_t pc = emulator_get_pc(emulator);
-		if (pc != old_pc)
+		SDL_LogError(SDL_LOG_CATEGORY_VIDEO, "Couldn't create the buffer");
+		SDL_LogError(SDL_LOG_CATEGORY_VIDEO, SDL_GetError());
+		cartridge_destroy(emulator_remove_cartridge(emulator));
+		emulator_destroy(emulator);
+		SDL_DestroyRenderer(renderer);
+		SDL_DestroyWindow(window);
+		SDL_Quit();
+	}
+	uint32_t* pixels = (uint32_t*)malloc(sizeof(uint32_t) * WIDTH * HEIGHT);
+	if (pixels == NULL)
+	{
+		cartridge_destroy(emulator_remove_cartridge(emulator));
+		emulator_destroy(emulator);
+		SDL_DestroyTexture(buffer);
+		SDL_DestroyRenderer(renderer);
+		SDL_DestroyWindow(window);
+		SDL_Quit();
+	}
+	int pitch = WIDTH * sizeof(uint32_t);
+	while (is_true(running))
+	{
+		SDL_Event event;
+		while (SDL_PollEvent(&event) != 0)
 		{
-			instructions--;
-			uint8_t a = emulator_get_cpu_reg_a(emulator);
-			uint8_t x = emulator_get_cpu_reg_x(emulator);
-			uint8_t y = emulator_get_cpu_reg_y(emulator);
-			uint8_t sp = emulator_get_cpu_reg_sp(emulator);
-
-			printf("%04X     A:%02X X:%02X Y:%02X SP:%02X\n", pc, a, x, y, sp);
-			fprintf_s(f, "%04X     A:%02X X:%02X Y:%02X SP:%02X\n", pc, a, x, y, sp);
-			old_pc = pc;
+			switch (event.type)
+			{
+			case SDL_QUIT:
+				running = FALSE;
+				break;
+			default:
+				break;
+			}
+		}
+		if (emulator_get_pc(emulator) == 0xC28F)
+		{
+			int i = 0;
+		}
+		emulator_tick(emulator);
+		if (emulator_is_screen_ready(emulator))
+		{
+			SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+			SDL_RenderClear(renderer);
+			emulator_get_screen(emulator, pixels, WIDTH * HEIGHT);
+			if (SDL_UpdateTexture(buffer, NULL, pixels, pitch) == 0)
+			{
+				if (SDL_RenderCopy(renderer, buffer, NULL, NULL) != 0)
+				{
+					SDL_LogError(SDL_LOG_CATEGORY_RENDER, "Couldn't render the buffer");
+					SDL_LogError(SDL_LOG_CATEGORY_RENDER, SDL_GetError());
+				}
+			}
+			else
+			{
+				SDL_LogError(SDL_LOG_CATEGORY_RENDER, "Couldn't update the buffer");
+				SDL_LogError(SDL_LOG_CATEGORY_RENDER, SDL_GetError());
+			}
+			SDL_RenderPresent(renderer);
 		}
 	}
-	fclose(f);
+
+
+
+	free(pixels);
 	cartridge_destroy(emulator_remove_cartridge(emulator));
 	emulator_destroy(emulator);
+	SDL_DestroyTexture(buffer);
+	SDL_DestroyRenderer(renderer);
+	SDL_DestroyWindow(window);
+	SDL_Quit();
 	return 0;
 }

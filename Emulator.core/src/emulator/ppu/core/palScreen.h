@@ -2,8 +2,8 @@
 #define __EMULATOR_PPU_CORE_PAL_SCREEN_H__
 #include <inttypes.h>
 
-#define to_color(r, g, b) ((r << 24) + (g << 16) + (b << 8) + 255)
-
+//#define to_color(r, g, b) ((r << 24) + (g << 16) + (b << 8) + 255)
+#define to_color(r, g, b) ((255 << 24) + (b << 16) + (g << 8) + r)
 
 uint32_t palScreen[0x40] = {
 	to_color(84, 84, 84),

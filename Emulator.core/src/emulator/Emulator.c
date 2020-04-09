@@ -92,3 +92,31 @@ void emulator_set_pc(Emulator* emulator, uint16_t pc)
 {
 	emulator->cpu->registery->pc = pc;
 }
+
+void emulator_get_screen(Emulator* emulator, uint32_t* screen, size_t size)
+{
+	memcpy_s(screen, size * sizeof(uint32_t), emulator->cpu->bus->ppu->screen, sizeof(uint32_t) * 256 * 240);
+}
+
+uint8_t emulator_get_screen_pixel(Emulator* emulator, int x, int y)
+{
+	if (x >= 256 || y >= 240)
+		return;
+	uint32_t index = y * 256 + x;
+	return emulator->cpu->bus->ppu->screen[index];
+}
+
+bool emulator_is_screen_ready(Emulator* emulator)
+{
+	return emulator->cpu->bus->ppu->frame;
+}
+
+void emulator_get_pattern_table(Emulator* emulator, uint8_t i, uint8_t palette, uint32_t* data)
+{
+	ppu_get_pattern_table(emulator->cpu->bus->ppu, i, palette, data);
+}
+
+void emulator_get_palette_table(Emulator* emulator, uint8_t palette, uint32_t* data)
+{
+	ppu_get_palette_table(emulator->cpu->bus->ppu, palette, data);
+}

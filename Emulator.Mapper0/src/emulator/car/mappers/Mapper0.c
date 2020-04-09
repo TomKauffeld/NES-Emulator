@@ -47,7 +47,7 @@ uint32_t mapper_0_prg_write(Mapper* mapper, uint16_t addr)
 
 uint32_t mapper_0_chr_read(Mapper* mapper, uint16_t addr)
 {
-	return UINT32_MAX;
+	return addr;
 }
 
 uint32_t mapper_0_chr_write(Mapper* mapper, uint16_t addr)

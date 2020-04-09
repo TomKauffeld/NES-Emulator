@@ -2,7 +2,7 @@
 #define __EMULATOR_PPU_CORE_PPU_H__
 #include <inttypes.h>
 #include "../../car/core/Cartridge.h"
-
+#include "../bus/PPU_Bus.h"
 
 typedef union loopy_register_u
 {
@@ -22,10 +22,9 @@ typedef union loopy_register_u
 
 
 typedef struct ppu {
+	PPU_Bus* bus;
 	Cartridge ** car;
-	uint8_t tblName[2][1024];
-	uint8_t tblPattern[2][4096];
-	uint8_t tblPalette[32];
+	//uint8_t tblPattern[2][4096];
 	int16_t scanline;
 	int16_t cycle;
 	bool frame;
@@ -39,21 +38,6 @@ typedef struct ppu {
 		};
 		uint8_t reg;
 	} status;
-	union mask_u
-	{
-		struct
-		{
-			uint8_t grayscale : 1;
-			uint8_t render_background_left : 1;
-			uint8_t render_sprites_left : 1;
-			uint8_t render_background : 1;
-			uint8_t render_sprites : 1;
-			uint8_t enhance_red : 1;
-			uint8_t enhance_green : 1;
-			uint8_t enhance_blue : 1;
-		};
-		uint8_t reg;
-	} mask;	
 	union PPUCTRL
 	{
 		struct
@@ -94,10 +78,6 @@ uint8_t ppu_read(PPU* ppu, uint16_t addr);
 
 void ppu_write(PPU* ppu, uint16_t addr, uint8_t value);
 
-uint8_t ppu_bus_read(PPU* ppu, uint16_t addr);
-
-void ppu_bus_write(PPU* ppu, uint16_t addr, uint8_t value);
-
 void ppu_tick(PPU* ppu);
 
 void ppu_update_shifters(PPU* ppu);
@@ -115,5 +95,9 @@ void ppu_transfer_address_y(PPU* ppu);
 void ppu_set_pixel(PPU* ppu, uint16_t x, uint16_t y, uint32_t color);
 
 uint32_t ppu_get_color_from_palette_ram(PPU* ppu, uint8_t palette, uint8_t pixel);
+
+void ppu_get_palette_table(PPU* ppu, uint8_t palette, uint32_t* data);
+
+void ppu_get_pattern_table(PPU* ppu, uint8_t i, uint8_t palette, uint32_t* data);
 
 #endif

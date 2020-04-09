@@ -72,29 +72,29 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Emulator.MapperProvider\include\;$(SolutionDir)Utils\include\;$(SolutionDir)Emulator.core\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Emulator.MapperProvider\dev$(PlatformArchitecture)\;$(SolutionDir)Utils\dev$(PlatformArchitecture)\;$(SolutionDir)Emulator.core\dev$(PlatformArchitecture)\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SDKS)SDL\SDL2-2.0.12\include\;$(SolutionDir)Emulator.MapperProvider\include\;$(SolutionDir)Utils\include\;$(SolutionDir)Emulator.core\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SDKS)SDL\SDL2-2.0.12\lib\$(PlatformTarget)\;$(SolutionDir)Emulator.MapperProvider\dev$(PlatformArchitecture)\;$(SolutionDir)Utils\dev$(PlatformArchitecture)\;$(SolutionDir)Emulator.core\dev$(PlatformArchitecture)\;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)dev$(PlatformArchitecture)\</OutDir>
     <IntDir>$(ProjectDir)int\$(Configuration)$(PlatformArchitecture)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)Emulator.MapperProvider\include\;$(SolutionDir)Utils\include\;$(SolutionDir)Emulator.core\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Emulator.MapperProvider\dev$(PlatformArchitecture)\;$(SolutionDir)Utils\dev$(PlatformArchitecture)\;$(SolutionDir)Emulator.core\dev$(PlatformArchitecture)\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SDKS)SDL\SDL2-2.0.12\include\;$(SolutionDir)Emulator.MapperProvider\include\;$(SolutionDir)Utils\include\;$(SolutionDir)Emulator.core\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SDKS)SDL\SDL2-2.0.12\lib\$(PlatformTarget)\;$(SolutionDir)Emulator.MapperProvider\dev$(PlatformArchitecture)\;$(SolutionDir)Utils\dev$(PlatformArchitecture)\;$(SolutionDir)Emulator.core\dev$(PlatformArchitecture)\;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)dev$(PlatformArchitecture)\</OutDir>
     <IntDir>$(ProjectDir)int\$(Configuration)$(PlatformArchitecture)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)Emulator.MapperProvider\include\;$(SolutionDir)Utils\include\;$(SolutionDir)Emulator.core\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Emulator.MapperProvider\bin$(PlatformArchitecture)\;$(SolutionDir)Utils\bin$(PlatformArchitecture)\;$(SolutionDir)Emulator.core\bin$(PlatformArchitecture)\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SDKS)SDL\SDL2-2.0.12\include\;$(SolutionDir)Emulator.MapperProvider\include\;$(SolutionDir)Utils\include\;$(SolutionDir)Emulator.core\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SDKS)SDL\SDL2-2.0.12\lib\$(PlatformTarget)\;$(SolutionDir)Emulator.MapperProvider\bin$(PlatformArchitecture)\;$(SolutionDir)Utils\bin$(PlatformArchitecture)\;$(SolutionDir)Emulator.core\bin$(PlatformArchitecture)\;$(LibraryPath)</LibraryPath>
     <IntDir>$(ProjectDir)int\$(Configuration)$(PlatformArchitecture)\</IntDir>
     <OutDir>$(ProjectDir)bin$(PlatformArchitecture)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)Emulator.MapperProvider\include\;$(SolutionDir)Utils\include\;$(SolutionDir)Emulator.core\include\;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)Emulator.MapperProvider\bin$(PlatformArchitecture)\;$(SolutionDir)Utils\bin$(PlatformArchitecture)\;$(SolutionDir)Emulator.core\bin$(PlatformArchitecture)\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SDKS)SDL\SDL2-2.0.12\include\;$(SolutionDir)Emulator.MapperProvider\include\;$(SolutionDir)Utils\include\;$(SolutionDir)Emulator.core\include\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SDKS)SDL\SDL2-2.0.12\lib\$(PlatformTarget)\;$(SolutionDir)Emulator.MapperProvider\bin$(PlatformArchitecture)\;$(SolutionDir)Utils\bin$(PlatformArchitecture)\;$(SolutionDir)Emulator.core\bin$(PlatformArchitecture)\;$(LibraryPath)</LibraryPath>
     <IntDir>$(ProjectDir)int\$(Configuration)$(PlatformArchitecture)\</IntDir>
     <OutDir>$(ProjectDir)bin$(PlatformArchitecture)\</OutDir>
   </PropertyGroup>
@@ -103,20 +103,21 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLFW_DLL;GLFW_INCLUDE_NONE;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>user32.lib;kernel32.lib;Emulator.core.lib;Utils.lib;Emulator.MapperProvider.lib</AdditionalDependencies>
+      <AdditionalDependencies>Shell32.lib;Emulator.core.lib;Utils.lib;Emulator.MapperProvider.lib;SDL2.lib;SDL2main.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y /d "$(SolutionDir)Emulator.core\dev$(PlatformArchitecture)\*.dll" "$(OutDir)"
 xcopy /y /d "$(SolutionDir)Utils\dev$(PlatformArchitecture)\*.dll" "$(OutDir)"
 xcopy /y /d "$(SolutionDir)Emulator.MapperProvider\dev$(PlatformArchitecture)\*.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)nestest.nes" "$(OutDir)"</Command>
+xcopy /y /d "$(SolutionDir)nestest.nes" "$(OutDir)"
+xcopy /y /d "$(SDKS)SDL\SDL2-2.0.12\lib\$(PlatformTarget)\*.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -124,20 +125,21 @@ xcopy /y /d "$(SolutionDir)nestest.nes" "$(OutDir)"</Command>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLFW_DLL;GLFW_INCLUDE_NONE;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>user32.lib;kernel32.lib;Emulator.core.lib;Utils.lib;Emulator.MapperProvider.lib</AdditionalDependencies>
+      <AdditionalDependencies>Shell32.lib;Emulator.core.lib;Utils.lib;Emulator.MapperProvider.lib;SDL2.lib;SDL2main.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y /d "$(SolutionDir)Emulator.core\dev$(PlatformArchitecture)\*.dll" "$(OutDir)"
 xcopy /y /d "$(SolutionDir)Utils\dev$(PlatformArchitecture)\*.dll" "$(OutDir)"
 xcopy /y /d "$(SolutionDir)Emulator.MapperProvider\dev$(PlatformArchitecture)\*.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)nestest.nes" "$(OutDir)"</Command>
+xcopy /y /d "$(SolutionDir)nestest.nes" "$(OutDir)"
+xcopy /y /d "$(SDKS)SDL\SDL2-2.0.12\lib\$(PlatformTarget)\*.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -147,7 +149,7 @@ xcopy /y /d "$(SolutionDir)nestest.nes" "$(OutDir)"</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLFW_DLL;GLFW_INCLUDE_NONE;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
@@ -156,13 +158,14 @@ xcopy /y /d "$(SolutionDir)nestest.nes" "$(OutDir)"</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>user32.lib;kernel32.lib;Emulator.core.lib;Utils.lib;Emulator.MapperProvider.lib</AdditionalDependencies>
+      <AdditionalDependencies>Shell32.lib;Emulator.core.lib;Utils.lib;Emulator.MapperProvider.lib;SDL2.lib;SDL2main.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y /d "$(SolutionDir)Emulator.core\bin$(PlatformArchitecture)\*.dll" "$(OutDir)"
 xcopy /y /d "$(SolutionDir)Utils\bin$(PlatformArchitecture)\*.dll" "$(OutDir)"
 xcopy /y /d "$(SolutionDir)Emulator.MapperProvider\bin$(PlatformArchitecture)\*.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)nestest.nes" "$(OutDir)"</Command>
+xcopy /y /d "$(SolutionDir)nestest.nes" "$(OutDir)"
+xcopy /y /d "$(SDKS)SDL\SDL2-2.0.12\lib\$(PlatformTarget)\*.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -172,7 +175,7 @@ xcopy /y /d "$(SolutionDir)nestest.nes" "$(OutDir)"</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>GLFW_DLL;GLFW_INCLUDE_NONE;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <CompileAs>CompileAsC</CompileAs>
     </ClCompile>
@@ -181,13 +184,14 @@ xcopy /y /d "$(SolutionDir)nestest.nes" "$(OutDir)"</Command>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>user32.lib;kernel32.lib;Emulator.core.lib;Utils.lib;Emulator.MapperProvider.lib</AdditionalDependencies>
+      <AdditionalDependencies>Shell32.lib;Emulator.core.lib;Utils.lib;Emulator.MapperProvider.lib;SDL2.lib;SDL2main.lib</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y /d "$(SolutionDir)Emulator.core\bin$(PlatformArchitecture)\*.dll" "$(OutDir)"
 xcopy /y /d "$(SolutionDir)Utils\bin$(PlatformArchitecture)\*.dll" "$(OutDir)"
 xcopy /y /d "$(SolutionDir)Emulator.MapperProvider\bin$(PlatformArchitecture)\*.dll" "$(OutDir)"
-xcopy /y /d "$(SolutionDir)nestest.nes" "$(OutDir)"</Command>
+xcopy /y /d "$(SolutionDir)nestest.nes" "$(OutDir)"
+xcopy /y /d "$(SDKS)SDL\SDL2-2.0.12\lib\$(PlatformTarget)\*.dll" "$(OutDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

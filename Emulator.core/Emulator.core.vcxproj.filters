@@ -28,6 +28,12 @@
     <ClCompile Include="src\emulator\ppu\core\PPU.c">
       <Filter>src\emulator\ppu\core</Filter>
     </ClCompile>
+    <ClCompile Include="src\emulator\ppu\bus\PPU_Bus.c">
+      <Filter>src\emulator\ppu\bus</Filter>
+    </ClCompile>
+    <ClCompile Include="src\emulator\ppu\bus\TblName.c">
+      <Filter>src\emulator\ppu\bus</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\emulator\car\core\CartridgeHeader.h">
@@ -83,6 +89,12 @@
     </ClInclude>
     <ClInclude Include="src\emulator\ppu\core\palScreen.h">
       <Filter>src\emulator\ppu\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\emulator\ppu\bus\PPU_Bus.h">
+      <Filter>src\emulator\ppu\bus</Filter>
+    </ClInclude>
+    <ClInclude Include="src\emulator\ppu\bus\TblName.h">
+      <Filter>src\emulator\ppu\bus</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

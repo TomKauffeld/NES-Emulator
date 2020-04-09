@@ -19,6 +19,7 @@ Bus* bus_init()
 		free(bus);
 		return NULL;
 	}
+	memset(bus->ram, 0x00, sizeof(uint8_t)* ram_size);
 	bus->car = NULL;
 	bus->ppu = ppu_init(&(bus->car));
 	if (bus->ppu == NULL)
@@ -27,7 +28,6 @@ Bus* bus_init()
 		free(bus);
 		return NULL;
 	}
-	memset(bus->ram, 0x00, sizeof(uint8_t) * ram_size);
 	return bus;
 }
 
@@ -40,7 +40,7 @@ uint8_t bus_read(const Bus* bus, uint16_t addr)
 	if (addr >= PPU_START && addr <= PPU_END)
 		return ppu_read(bus->ppu, addr - PPU_START);
 	if (addr >= PPU_CLONE_START && addr <= PPU_CLONE_END)
-		return bus_read(bus, (addr & (PPU_END - PPU_START)) + PPU_START);
+		return bus_read(bus, (addr % (PPU_END - PPU_START )) + PPU_START);
 	if (addr >= CAR_PRG_START && addr <= CAR_PRG_END)
 		return cartridge_read_prg(bus->car, addr - CAR_PRG_START);
 	return 0x00;
@@ -55,7 +55,7 @@ void bus_write(const Bus* bus, uint16_t addr, uint8_t value)
 	else if (addr >= PPU_START && addr <= PPU_END)
 		ppu_write(bus->ppu, addr - PPU_START, value);
 	else if (addr >= PPU_CLONE_START && addr <= PPU_CLONE_END)
-		bus_write(bus, (addr & (PPU_END - PPU_START)) + PPU_START, value);
+		bus_write(bus, (addr % (PPU_END - PPU_START)) + PPU_START, value);
 	else if (addr >= CAR_PRG_START && addr <= CAR_PRG_END)
 		cartridge_write_prg(bus->car, addr - CAR_PRG_START, value);
 }
